@@ -5,7 +5,7 @@ let orderWindow;
 
 function createMainWindow() {
     homeWindow = new BrowserWindow({ width: 650, height: 1000 });
-    homeWindow.loadFile('C:/Users/Teano/Documents/COMPUTER-SHOP_ORDERING/src/Home/Home.html');
+    homeWindow.loadFile('C:/Users/ADMIN/Documents/ORDER SYSTEM/COMSHOP-ORDERING-APPLICATION/src/Home/Home.html');
 }
 
 // home page C:/Users/Teano/Documents/COMPUTER-SHOP_ORDERING/src/Home/Home.html
