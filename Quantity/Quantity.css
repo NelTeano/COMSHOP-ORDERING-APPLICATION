@@ -1,12 +1,33 @@
-body, button, input {
+body{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-family: 'Franklin  Gothic Medium';
+    background-color: rgb(0, 0, 0);
+    gap: 40px;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-  }
+}
+
+.image-description {
+  font-family: 'Franklin  Gothic Medium'; 
+  font-size: 24px; 
+}
   
   .quantity-button {
     display: flex;
     align-items: center;
+    color: rgb(0, 0, 0);
     margin-top: 20px;
   }
   
@@ -18,35 +39,83 @@ body, button, input {
     padding: 5px;
   }
   
-  button {
-    background-color: #3498db;
-    color: #fff;
+  button1 {
+    background-color: #e30000;
+    color: #000000;
     border: none;
     border-radius: 3px;
     padding: 5px 10px;
     cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #2980b9;
   }
 
-  .add-to-orders {
-    background-color: #117100;
-    color: #fff;
+  button2 {
+    background-color: #1dc200;
+    color: #000000;
     border: none;
     border-radius: 3px;
     padding: 5px 10px;
-    align-items: center;
     cursor: pointer;
   }
   
-  .cancel-order {
+  button1:hover {
     background-color: #a40000;
+    color: #ffffff;
+  }
+
+  button2:hover {
+    background-color: #117100;
+    color: #ffffff;
+  }
+
+  .quantity-button {
+    margin-bottom: 350px; 
+  }
+  .add-to-orders {
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 50px;
+    cursor: pointer;
+    outline: 1.5px solid #117100;
+    border-radius: 10px 10px 10px 10px;
+    margin-bottom: 100px;
+  }
+
+  .add-to-orders:hover {
+    background-color: #117100;
+    outline: 1.5px solid #000000;
+    color: #ffffff;
+  }
+  
+  .cancel-order {   
+    background-color: #000000;
     color: #fff;
     border: none;
     border-radius: 3px;
     padding: 5px 10px;
-    align-items: center;
     cursor: pointer;
+    outline:1.5px solid #a40000;
+    border-radius: 10px 10px 10px 10px;
+    margin-top: 50px;
+  }
+
+  .cancel-order:hover {
+    background-color: #a40000;
+    outline: 1.5px solid #000000;
+    color: #ffffff;
+  }
+
+  .action-buttons{
+    margin-bottom: 30%;
+  }
+
+  img{
+
+    width: 100px;
+    height: 100px;
+  }
+
+  p{
+    color: #1dc200;
   }
