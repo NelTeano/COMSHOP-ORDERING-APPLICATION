@@ -10,6 +10,8 @@ body{
     align-items: center;
     height: 100%;
     width: 100%;
+    font-family: 'Franklin Gothic Medium';
+    outline: 10px solid #c84c05;
     background-color: antiquewhite;
     gap: 40px;
 }
@@ -25,4 +27,25 @@ body{
     width: 200px;
     height: 200px;
     margin: 20px;
+}
+
+.order-button {
+    margin: 10px;
+    background-color: #000000;
+    color: #cf8b0b;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Franklin Gothic Medium';
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: 2.5px solid #c84c05;
+    transition: background-color 0.1s ease; /* Smooth transition for background-color */
+}
+
+.order-button:hover {
+    background-color: #c84c05; /* Darker background color on hover */
+    color: #000000;
+    outline: 2.5px solid #000000;
+
 }

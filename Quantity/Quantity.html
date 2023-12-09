@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <title>Quantity</title>
+  <link rel="stylesheet" href="Quantity.css">
+</head>
+<body>
+  <div class="image-container">
+    <img src="../../images//orders.png" alt="image ni tutoy">
+    <p class="image-description">Combo Meal 1</p>
+  </div>
+  
+  <div class="quantity-button">
+    <button class="decrement">-</button>
+    <input type="text" class="quantity-input" value="1" readonly>
+    <button class="increment">+</button>
+  </div>
+
+  <div class="action-buttons">
+    <button class="cancel-order">Cancel Order</button>
+    <button class="add-to-orders" onclick="addToOrders()">Add to Orders</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

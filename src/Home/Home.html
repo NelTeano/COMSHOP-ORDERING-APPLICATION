@@ -1,23 +1,16 @@
-<!-- Home.html -->
 <!DOCTYPE html>
 <html>
 <head>
-        <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'"
-        />
-        <meta
-        http-equiv="X-Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'"
-        />
-        <link rel="stylesheet" href="./Home.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" href="./Home.css">
     <meta charset="UTF-8">
     <title>Home Page</title>
 </head>
 <body>
     <div class="container">
         <div>
-            <h1>ARE YOU HUNGRY ? ORDER NOW!!!</h1>
+            <h1> Crave it, Own it 8===D</h1>
         </div>
         <div class="food-pictures">
           <div>
@@ -34,19 +27,18 @@
           </div>
         </div>
         <div>
-            <button>Click here to Order</button>
+            <button class="order-button" onclick="openSecondPage()">Click here to Order</button>
         </div>
     </div>
-    
+    <script>
+        function openSecondPage() {
+            if (typeof require === 'function') {
+                require('electron').ipcRenderer.send('open-second-page');
+            } else {
+                // Handle the case when 'require' is not available (not in Electron environment)
+                console.error('Error: Electron module not available. This code is meant for Electron environments.');
+            }
+        }
+    </script>
 </body>
 </html>
-
-
-
-
-<!-- <script>
-  <button onclick="openSecondPage()">Go to Second Page</button>
-        function openSecondPage() {
-            require('electron').ipcRenderer.send('open-second-page');
-        }
-</script> -->
