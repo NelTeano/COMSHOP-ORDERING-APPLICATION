@@ -8,8 +8,7 @@ function createMainWindow() {
     homeWindow.loadFile('C:/Users/Efraim Panganiban/Desktop/ORDER NI SHIMADA/COMSHOP-ORDERING-APPLICATION/Quantity/Quantity.html');
 }
 
-// home page C:/Users/Teano/Documents/COMPUTER-SHOP_ORDERING/src/Home/Home.html
-// order page C:/Users/Teano/Documents/COMPUTER-SHOP_ORDERING/src/Order/Order.html
+//C:\Users\ADMIN\Documents\ORDER SYSTEM\COMSHOP-ORDERING-APPLICATION\src\Home\Home.html
 
 // function createSecondWindow() {
 //     orderWindow = new BrowserWindow({ width: 800, height: 600 });
