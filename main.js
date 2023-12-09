@@ -5,7 +5,7 @@ let orderWindow;
 
 function createMainWindow() {
     homeWindow = new BrowserWindow({ width: 650, height: 1000 });
-    homeWindow.loadFile('C:/Users/Efraim Panganiban/Desktop/ORDER NI SHIMADA/COMSHOP-ORDERING-APPLICATION/Quantity/Quantity.html');
+    homeWindow.loadFile('C:/Users/ADMIN/Documents/ORDER SYSTEM/COMSHOP-ORDERING-APPLICATION/src/Order/Order.html');
 }
 
 //C:\Users\ADMIN\Documents\ORDER SYSTEM\COMSHOP-ORDERING-APPLICATION\src\Home\Home.html
