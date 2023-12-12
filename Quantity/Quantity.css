@@ -19,6 +19,7 @@ body{
     padding: 0;
 }
 
+
 .image-description {
   font-family: 'Franklin  Gothic Medium'; 
   font-size: 24px; 
@@ -111,9 +112,10 @@ body{
   }
 
   img{
-
-    width: 100px;
-    height: 100px;
+    margin-top: 20px;
+    width: 300px;
+    height: 300px;
+    outline: 2px solid white;
   }
 
   p{

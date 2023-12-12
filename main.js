@@ -1,12 +1,15 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+const dotenv = require('dotenv')
 
+dotenv.config();  
 let homeWindow;
 let orderWindow;
 
 function createMainWindow() {
     homeWindow = new BrowserWindow({ width: 650, height: 1000 });
-    homeWindow.loadFile('C:/Users/ADMIN/Documents/ORDER SYSTEM/COMSHOP-ORDERING-APPLICATION/src/Order/Order.html');
+    homeWindow.loadFile(process.env.homePage);
 }
+
 
 //C:\Users\ADMIN\Documents\ORDER SYSTEM\COMSHOP-ORDERING-APPLICATION\src\Home\Home.html
 

@@ -11,7 +11,7 @@ body{
     height: 100%;
     width: 100%;
     font-family: 'Franklin  Gothic Medium';
-    background-color: antiquewhite;
+    background-color: rgb(0, 0, 0);
     gap: 40px;
 }
 
@@ -20,6 +20,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    outline: 2px solid white;
 }
 
 .food-pictures img{
