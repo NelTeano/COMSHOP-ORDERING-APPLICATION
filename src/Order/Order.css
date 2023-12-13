@@ -1,10 +1,9 @@
 body {
   background-color: #000000e5;
-  margin: 0;
-  padding: 0;
+  margin-bottom: 0px;
   display: flex;
   min-height: 100vh;
-  overflow: hidden;
+
 }
 
 .content {
@@ -18,14 +17,78 @@ h1 {
   position: fixed;
 }
 
+
+.quantity-button-left1 {
+  display: flex;
+  align-items:center;
+  color: rgb(0, 0, 0);
+  margin-top: 20px;
+  width: 20px;
+  margin-left: 55px;
+  gap: 50px;
+  position: absolute;
+  
+}
+
+.quantity-button-right {
+  display: flex;
+  align-items:center;
+  color: rgb(0, 0, 0);
+  margin-top: 20px;
+  width: 20px;
+  margin-left: 205px;
+  gap: 50px;
+  position: absolute;
+  
+}
+
+.quantity-button-left {
+  display: flex;
+  align-items:center;
+  color: rgb(0, 0, 0);
+  margin-top: 20px;
+  width: 20px;
+  margin-left: 55px;
+  gap: 50px;
+  position: absolute;
+  padding-bottom: 30%;
+  
+}
+
+
+
+.quantity-input {
+  width: 20px;
+  height: 8px;
+  text-align: center;
+  border: 1px solid #ccc;
+  margin: 0 5px;
+  padding: 5px;
+  margin-left: 30px;
+  margin-right: 70px;
+  position: absolute;
+}
+
+
 h2 {
   font-family: 'Franklin Gothic Medium';
   color: rgb(224, 72, 34);
   text-align: right;
   margin-left: 340px;
   margin-top: 40px;
-  position: fixed;
+  position: absolute;
 }
+
+
+.add-to-orders {
+  font-family: 'Franklin Gothic Medium';
+  color: rgb(255, 255, 255);
+  text-align: right;
+  margin-left: 250px;
+  margin-top: 350px;
+  position: absolute;
+}
+
 
 .navbar {
   overflow: visible;
@@ -89,15 +152,15 @@ h2 {
   padding: 0px;
   font-size: 16px;
   text-align: center;
-  margin-left: 37px;
+  margin-left: 33px;
   color: rgb(255, 255, 255);
 }
 
 .menu-pictures img {
 
   justify-content: center;
-  width: 110px;
-  height: 110px;
+  width: 100px;
+  height: 100px;
   margin: 0px;
   margin-top: 115px;
   margin-left: 50px;
@@ -108,7 +171,29 @@ h2 {
   padding: 0%;
   font-size: 16px;
   text-align: right;
-  color: antiquewhite;
-  margin-left: 200px;
+  color: rgb(255, 255, 255);
+  margin-left: 195px;
   margin-top: 0px;
+}
+
+.add-to-order {
+  margin: 10px;
+    background-color: #000000;
+    color: #cf8b0b;
+    margin-top: 100px;
+    margin-left: 180px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Franklin Gothic Medium';
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: 2.5px solid #c84c05;
+    transition: background-color 0.1s ease;
+}
+.add-to-order:hover {
+  background-color: #c84c05; /* Darker background color on hover */
+  color: #000000;
+  outline: 2.5px solid #000000;
+
 }
