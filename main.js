@@ -1,28 +1,32 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
-const dotenv = require('dotenv')
+import express from 'express'
+import dotenv from 'dotenv';
+import { app, BrowserWindow } from 'electron';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { initDatabase } from './database.js'
 
-dotenv.config();  
+// ROUTES
+import orderRoutes from './server/routes/orderRoutes.js';
+
+dotenv.config(); // INIT .env
+initDatabase(); // INIT DB
+
+const expressApp = express();
+const port = 3000;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 let homeWindow;
-let orderWindow;
 
-function createMainWindow() {
+async function createMainWindow() {
     homeWindow = new BrowserWindow({ width: 650, height: 1000 });
-    homeWindow.loadFile(process.env.homePage);
+    try {
+        await homeWindow.loadFile(`${__dirname}/src/Home/Home.html`);
+    } catch (error) {
+        console.error('Error loading file:', error.message);
+    }
 }
-
-
-//C:\Users\ADMIN\Documents\ORDER SYSTEM\COMSHOP-ORDERING-APPLICATION\src\Home\Home.html
-
-// function createSecondWindow() {
-//     orderWindow = new BrowserWindow({ width: 800, height: 600 });
-
-//     // Handle window closure properly
-//     orderWindow.on('closed', () => {
-//         orderWindow = null;
-//     });
-
-//     orderWindow.loadFile('C:/Users/Teano/Documents/COMPUTER-SHOP_ORDERING/src/Order/Order.html');
-// }
 
 app.whenReady().then(() => {
     createMainWindow();
@@ -33,15 +37,9 @@ app.whenReady().then(() => {
         }
     });
 
-    // // Create the second window when requested
-    // ipcMain.on('open-second-page', () => {
-    //     createSecondWindow();
-
-    //     // Close the first window
-    //     if (homeWindow) {
-    //         homeWindow.close();
-    //     }
-    // });
+    expressApp.listen(port, () => {
+        console.log(`Express server is running on http://localhost:${port}`);
+    });
 });
 
 app.on('window-all-closed', () => {
@@ -49,3 +47,7 @@ app.on('window-all-closed', () => {
         app.quit();
     }
 });
+
+
+// USE ROUTES
+expressApp.use('/api', orderRoutes);
