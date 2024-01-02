@@ -13,4 +13,24 @@ orderRoutes.get('/Orders', async (req, res) => {
     }
 });
 
+
+orderRoutes.post('/submit-order',async (req,res)=>{
+    
+    const orderDetails = new orderModel({
+        pcNum: req.body.pcNum,
+        products: req.body.products,
+        total: req.body.total
+    })
+
+    try {   
+        const saveOrderData = await orderDetails.save();
+        res.send(saveOrderData);
+        console.log("Successfully placed an order");
+
+    } catch (error) {
+        res.status(500).json({ message: "order failed" , error });
+        console.log("Failed creating an order");
+    }
+})
+
 export default orderRoutes;
