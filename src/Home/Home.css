@@ -1,6 +1,6 @@
 body{
-    margin: 0;
-    padding: 0;
+    margin-top: 0px;
+    padding: 0px;
 }
 
 .container{
@@ -10,10 +10,11 @@ body{
     align-items: center;
     height: 100%;
     width: 100%;
-    font-family: 'Franklin  Gothic Medium';
-    background-color: rgb(0, 0, 0);
+    font-family: 'Poppins', sans-serif;
+    font-size: small;
+    background-color: #FEFCF3;
     gap: 40px;
-}
+}p
 
 .food-pictures{
     display: flex;
@@ -31,21 +32,21 @@ body{
 
 .order-button {
     margin: 10px;
-    background-color: #000000;
-    color: #cf8b0b;
+    background-color: #FEFCF3;
+    color: #000000;
     padding: 10px 20px;
     font-size: 16px;
     font-family: 'Franklin Gothic Medium';
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    outline: 2.5px solid #c84c05;
+    outline: 2.5px solid #000000;
     transition: background-color 0.1s ease; /* Smooth transition for background-color */
 }
 
 .order-button:hover {
-    background-color: #c84c05; /* Darker background color on hover */
-    color: #000000;
+    background-color: #026f14; /* Darker background color on hover */
+    color: #F5EBE0;
     outline: 2.5px solid #000000;
 
 }

@@ -7,6 +7,9 @@ const OrderSchema = mongoose.Schema({
     products: {
         type: Array,
     },
+    total : {
+        type: Number,
+    }
 }, { 
     timestamps: true
 });
