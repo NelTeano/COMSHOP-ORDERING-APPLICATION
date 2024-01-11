@@ -86,7 +86,7 @@ closeCart.addEventListener('click', () => {
                 newProduct.innerHTML = 
                 `<img src="${product.image}" alt="">
                 <h2>${product.name}</h2>
-                <div class="price">$${product.price}</div>
+                <div class="price">₱${product.price}</div>
                 <button class="addCart">Add To Cart</button>`;
                 listProductHTML.appendChild(newProduct);
                 
@@ -166,7 +166,7 @@ const addCartToHTML = () => {
                 <div class="name">
                     ${productInfo.name}
                 </div>
-                <div class="totalPrice">$${itemTotalPrice}</div>
+                <div class="totalPrice">₱${itemTotalPrice}</div>
                 <div class="quantity">
                     <span class="minus"><</span>
                     <span>${item.quantity}</span>
@@ -180,7 +180,7 @@ const addCartToHTML = () => {
     }
 
     // Display overall total price
-    listCartHTML.innerHTML += `<div class="overallTotal">Overall Total: $${overallTotalPrice}</div>`;
+    listCartHTML.innerHTML += `<div class="overallTotal">Overall Total: ₱${overallTotalPrice}</div>`;
 
     iconCartSpan.innerText = totalQuantity;
 };

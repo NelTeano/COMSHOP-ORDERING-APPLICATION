@@ -2,49 +2,49 @@
     {
         "id": 1,
         "name":" Coke",
-        "price": 200,
+        "price": 20,
         "image": "images/coke.webp"
     },
     {
         "id": 2,
         "name":" Combo Meal",
-        "price": 250,
+        "price": 100,
         "image": "images/combo-meal.jpg"
     },
     {
         "id": 3,
         "name":" Nova",
-        "price": 290,
+        "price": 25,
         "image": "images/nova.jpg"
     },
     {
         "id": 4,
         "name":" Piattos Barbecue Flavor",
-        "price": 200,
+        "price": 25,
         "image": "images/piattos-barbecue.jpg"
     },
     {
         "id": 5,
         "name":" Piattos Cheese",
-        "price": 300,
+        "price": 25,
         "image": "images/piattos.webp"
     },
     {
         "id": 6,
         "name":" Piattos Sour Cream",
-        "price": 200,
+        "price": 25,
         "image": "images/piattos-sour.jpg"
     },
     {
         "id": 7,
         "name":"  Royal",
-        "price": 200,
+        "price": 20,
         "image": "images/royal.jpg"
     },
     {
         "id": 8,
         "name":" Sprite",
-        "price": 200,
+        "price": 20,
         "image": "images/sprite.webp"
     }
     
