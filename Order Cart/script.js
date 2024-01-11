@@ -15,7 +15,12 @@ let pcNum = 1;
 localStorage.clear(); // INITIATE CLEAR FIRST ALWAYS FOR NEW DATA
 
 function openPopup() {
-    popupHTML.style.display = "flex";
+    console.log(cart.length)
+    if(cart.length < 1){
+        alert("Put Items to the cart first !");
+    }else{
+        popupHTML.style.display = "flex";
+    }
 }
 
 function closePopup() {
@@ -23,7 +28,12 @@ function closePopup() {
 }
 
 const confirmOrder = () => {
+    
     pcNum = parseInt(pcNumInput.value, 10);
+    if (isNaN(pcNum)) {
+        alert("Please enter a valid PC Number");
+        return; 
+    }
 
     const orderData = {
         pcNum: pcNum,
