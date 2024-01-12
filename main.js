@@ -1,24 +1,8 @@
-import express from 'express'
-import dotenv from 'dotenv';
 import { app, BrowserWindow } from 'electron';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import { initDatabase } from './database.js'
 
-// ROUTES
-import orderRoutes from './server/routes/orderRoutes.js';
-import productRoutes from './server/routes/productRoutes.js'
 
-dotenv.config(); // INIT .env
-initDatabase(); // INIT DB
-
-const expressApp = express();
-const port = 3000;
-
-//MIDDLEWARE
-expressApp.use(express.urlencoded({ extended: true }));
-expressApp.use(express.json());
-expressApp.use(express.static("public"));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -44,10 +28,6 @@ app.whenReady().then(() => {
             createMainWindow();
         }
     });
-
-    expressApp.listen(port, () => {
-        console.log(`Express server is running on http://localhost:${port}`);
-    });
 });
 
 app.on('window-all-closed', () => {
@@ -57,6 +37,3 @@ app.on('window-all-closed', () => {
 });
 
 
-// USE ROUTES
-expressApp.use('/api', orderRoutes);
-expressApp.use('/api', productRoutes);
