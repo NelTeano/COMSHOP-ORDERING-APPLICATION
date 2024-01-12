@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -22,8 +22,62 @@
         <a href="C:\Users\Christian\Desktop\Shimads\COMSHOP-ORDERING-APPLICATION\src\Order\Order.html" class="button-link">
         <button1 class="cancel-order">Cancel Order</button1>
         <button2 class="add-to-orders" onclick="addToOrders()">Add to Orders</button2>
-
+          
     </div>
   <script src="Quantity.js"></script>
 </body>
+</html> -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Upload</title>
+</head>
+<body>
+    <h1>Product Upload</h1>
+    
+    <form id="productForm" enctype="multipart/form-data">
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="price">Product Price:</label>
+        <input type="number" id="price" name="price" required>
+        
+        <label for="image">Product Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        
+        <button type="button" onclick="uploadProduct()">Upload Product</button>
+        <a href="../Order Cart//index.html">Go see carts</a>
+    </form>
+
+    
+
+    <script>
+        async function uploadProduct() {
+            const form = document.getElementById('productForm');
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('http://localhost:3000/api/Products', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('Product uploaded successfully:', result);
+                } else {
+                    const error = await response.json();
+                    console.error('Error uploading product:', error);
+                }
+            } catch (error) {
+                console.error('Error uploading product:', error);
+            }
+        }
+    </script>
+</body>
 </html>
+
+
+

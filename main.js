@@ -25,10 +25,12 @@ const __dirname = dirname(__filename);
 
 let homeWindow;
 
+// `${__dirname}/src/Home/Home.html`
+
 async function createMainWindow() {
     homeWindow = new BrowserWindow({ width: 650, height: 1000 });
     try {
-        await homeWindow.loadFile(`${__dirname}/src/Home/Home.html`);
+        await homeWindow.loadFile(`${__dirname}/Quantity/Quantity.html`);
     } catch (error) {
         console.error('Error loading file:', error.message);
     }
