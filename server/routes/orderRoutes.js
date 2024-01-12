@@ -4,13 +4,24 @@ import orderModel from '../models/Order.js';
 const orderRoutes = express.Router();
 
 // GET ALL PENDING ORDERS
-orderRoutes.get('/Orders', async (req, res) => {
+orderRoutes.get('/Orders/pending', async (req, res) => {
     try {
         const orders = await orderModel.find({status: 'pending'});
         res.send(orders);
         console.log('Successful getting PENDING Orders data');
     } catch (error) {
-        res.status(500).json({ message: "Error Getting Orders Data", error });
+        res.status(500).json({ message: "Error Getting PENDING Data", error });
+    }
+});
+
+// GET ALL DONE ORDERS
+orderRoutes.get('/Orders/done', async (req, res) => {
+    try {
+        const orders = await orderModel.find({status: 'done'});
+        res.send(orders);
+        console.log('Successful getting DONE Orders data');
+    } catch (error) {
+        res.status(500).json({ message: "Error Getting DONE Orders Data", error });
     }
 });
 

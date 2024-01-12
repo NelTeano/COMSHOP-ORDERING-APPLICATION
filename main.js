@@ -12,9 +12,9 @@ let homeWindow;
 // `${__dirname}/src/Home/Home.html`
 
 async function createMainWindow() {
-    homeWindow = new BrowserWindow({ width: 650, height: 1000 });
+    homeWindow = new BrowserWindow({ width: 650, height: 1100 });
     try {
-        await homeWindow.loadFile(`${__dirname}/Quantity/Quantity.html`);
+        await homeWindow.loadFile(`${__dirname}/src/Home/Home.html`);
     } catch (error) {
         console.error('Error loading file:', error.message);
     }
