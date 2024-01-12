@@ -6,10 +6,12 @@ let body = document.querySelector('body');
 let closeCart = document.querySelector('.close');
 const popupHTML = document.querySelector('.popup');
 const pcNumInput = document.querySelector('.pcNumber');
+const suggestionInput = document.querySelector('.suggestion');
 let products = [];
 let cart = [];
 let total = 0;
 let pcNum = 1;
+let comment = '';
 
 
 
@@ -40,6 +42,7 @@ const confirmOrder = () => {
         pcNum: pcNum,
         products: cart,
         total: total,
+        comment: comment  
     };
 
     fetch('http://localhost:3000/api/submit-order', {
@@ -66,6 +69,9 @@ pcNumInput.addEventListener('input', function() {
     pcNum = parseInt(pcNumInput.value, 10); 
 });
 
+suggestionInput.addEventListener('input', function() {
+    comment = suggestionInput.value;
+});
 
 iconCart.addEventListener('click', () => {
     body.classList.toggle('showCart');

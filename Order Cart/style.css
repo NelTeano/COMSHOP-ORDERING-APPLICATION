@@ -168,6 +168,7 @@ body.showCart .container{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 0px 20px 0px 20px;
     gap: 30px;
     top: 30%;
     left: 20%;
@@ -198,6 +199,10 @@ body.showCart .container{
     border: none;
     cursor: pointer;
     margin-left: 20px;
+}
+
+.pcNumber{
+    margin-bottom: 40px;
 }
 
 
