@@ -7,6 +7,7 @@ import { initDatabase } from './database.js'
 
 // ROUTES
 import orderRoutes from './server/routes/orderRoutes.js';
+import productRoutes from './server/routes/productRoutes.js'
 
 dotenv.config(); // INIT .env
 initDatabase(); // INIT DB
@@ -56,3 +57,4 @@ app.on('window-all-closed', () => {
 
 // USE ROUTES
 expressApp.use('/api', orderRoutes);
+expressApp.use('/api', productRoutes);

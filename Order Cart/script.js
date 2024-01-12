@@ -12,6 +12,7 @@ let total = 0;
 let pcNum = 1;
 
 
+
 localStorage.clear(); // INITIATE CLEAR FIRST ALWAYS FOR NEW DATA
 
 function openPopup() {
@@ -223,7 +224,7 @@ const changeQuantityCart = (product_id, type) => {
 
 const initApp = () => {
     // get data product
-    fetch('products.json')
+    fetch('http://localhost:3000/api/Products')
     .then(response => response.json())
     .then(data => {
         products = data;
@@ -234,6 +235,9 @@ const initApp = () => {
             cart = JSON.parse(localStorage.getItem('cart'));
             addCartToHTML();
         }
+
+        
+        console.log(products)
     })
 }
 initApp();
