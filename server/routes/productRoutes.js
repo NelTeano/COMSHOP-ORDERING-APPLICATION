@@ -50,23 +50,31 @@ productRoutes.post('/Products', upload.single('image'), async (req, res) => {
     }
 });
 
-// productRoutes.post('/Products', async (req, res) => {
-//     try {
-//         const { name, price, image } = req.body;
+productRoutes.put('/Products/:productId/addStock', async (req, res) => {
+    const productId = req.params.productId;
+    const { quantity } = req.body;
 
-//         const newProduct = new productModel({
-//             name: name,
-//             price: price,
-//             image: image,
-//         });
+    try {
+        // Find the product by ID
+        const product = await productModel.findById(productId);
 
-//         const savedProduct = await newProduct.save();
+        if (!product) {
+            return res.status(404).json({ message: "Product not found" });
+        }
 
-//         res.status(201).json(savedProduct);
-//         console.log('Product created successfully');
-//     } catch (error) {
-//         res.status(500).json({ message: "Error creating product", error });
-//     }
-// });
+        // Update the stock value
+        product.stock += parseInt(quantity);
+        
+        // Save the product without triggering the pre('save') middleware
+        await productModel.updateOne({ _id: productId }, { $set: { stock: product.stock } });
+
+        // Fetch the updated product to include all fields
+        const updatedProduct = await productModel.findById(productId);
+
+        res.status(200).json({ message: "Stock updated successfully", product: updatedProduct });
+    } catch (error) {
+        res.status(500).json({ message: "Error updating stock", error });
+    }
+});
 
 export default productRoutes;
