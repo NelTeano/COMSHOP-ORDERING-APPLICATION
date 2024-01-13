@@ -1,3 +1,4 @@
+const { ipcRenderer } = require('electron');
 let listProductHTML = document.querySelector('.listProduct');
 let listCartHTML = document.querySelector('.listCart');
 let iconCart = document.querySelector('.icon-cart');
@@ -29,6 +30,7 @@ function openPopup() {
 function closePopup() {
     popupHTML.style.display = "none";
 }
+
 
 const confirmOrder = async () => {
     
@@ -82,7 +84,8 @@ const confirmOrder = async () => {
         alert("Order Successful");
         closePopup();
 
-        
+        console.log('Sending close-main-window event...');
+        ipcRenderer.send('close-main-window');
     } catch (error) {
         console.error('Error:', error);
         alert('Error submitting order');
@@ -118,6 +121,7 @@ closeCart.addEventListener('click', () => {
                 newProduct.innerHTML = 
                 `<img src="${product.image}" alt="">
                 <h2>${product.name}</h2>
+                <h5>Stock : ${product.stock}</h5>
                 <div class="price">₱${product.price}</div>
                 <button class="addCart">Add To Cart</button>`;
                 listProductHTML.appendChild(newProduct);

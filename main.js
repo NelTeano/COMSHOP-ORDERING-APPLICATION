@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow,  ipcMain } from 'electron';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -12,7 +12,14 @@ let homeWindow;
 // `${__dirname}/src/Home/Home.html`
 
 async function createMainWindow() {
-    homeWindow = new BrowserWindow({ width: 650, height: 1100 });
+    homeWindow = new BrowserWindow({ 
+        width: 650, 
+        height: 1100, 
+        webPreferences: {
+            nodeIntegration: true, // enable nodeIntegration
+            contextIsolation: false, // disable context isolation
+            }, 
+        });
     try {
         await homeWindow.loadFile(`${__dirname}/src/Home/Home.html`);
     } catch (error) {
@@ -33,6 +40,12 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
+    }
+});
+
+ipcMain.on('close-main-window', () => {
+    if (homeWindow) {
+        homeWindow.close();
     }
 });
 
