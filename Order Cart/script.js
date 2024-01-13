@@ -30,7 +30,7 @@ function closePopup() {
     popupHTML.style.display = "none";
 }
 
-const confirmOrder = () => {
+const confirmOrder = async () => {
     
     pcNum = parseInt(pcNumInput.value, 10);
     if (isNaN(pcNum)) {
@@ -45,23 +45,48 @@ const confirmOrder = () => {
         comment: comment  
     };
 
-    fetch('http://localhost:3000/api/submit-order', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(orderData),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch(error => {
-        console.error('Error:', error);   
-    });
+    try {
+        
+        const response = await fetch('http://localhost:3000/api/submit-order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderData),
+        });
 
-    alert("Order Successful")
-    closePopup();
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+
+        // Iterate through each item in the cart and update the stock
+        for (const item of cart) {
+            const productId = item.product_id;
+            const quantity = -item.quantity;
+
+            // Make a PUT request to update the stock for the current product
+            const stockUpdateResponse = await fetch(`http://localhost:3000/api/Products/${productId}/addStock`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ quantity }),
+            });
+
+            if (!stockUpdateResponse.ok) {
+                throw new Error(`Error updating stock for product ${productId}: ${stockUpdateResponse.status}`);
+            }
+        }
+
+        console.log('Success:', orderData)
+        alert("Order Successful");
+        closePopup();
+
+        
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error submitting order');
+    }
 }
 
 
@@ -230,7 +255,7 @@ const changeQuantityCart = (product_id, type) => {
 
 const initApp = () => {
     // get data product
-    fetch('http://localhost:3000/api/Products')
+    fetch('http://localhost:3000/api/Products/In-Stock')
     .then(response => response.json())
     .then(data => {
         products = data;
