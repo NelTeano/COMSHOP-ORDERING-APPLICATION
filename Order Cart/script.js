@@ -16,7 +16,7 @@ let comment = '';
 
 
 
-localStorage.clear(); // INITIATE CLEAR FIRST ALWAYS FOR NEW DATA
+localStorage.clear(); 
 
 function openPopup() {
     console.log(cart.length)
@@ -61,12 +61,12 @@ const confirmOrder = async () => {
             throw new Error(`Error: ${response.status}`);
         }
 
-        // Iterate through each item in the cart and update the stock
+        
         for (const item of cart) {
             const productId = item.product_id;
             const quantity = -item.quantity;
 
-            // Make a PUT request to update the stock for the current product
+           
             const stockUpdateResponse = await fetch(`http://localhost:3000/api/Products/${productId}/addStock`, {
                 method: 'PUT',
                 headers: {
@@ -80,9 +80,12 @@ const confirmOrder = async () => {
             }
         }
 
+
         console.log('Success:', orderData)
         alert("Order Successful");
         closePopup();
+
+
 
         console.log('Sending close-main-window event...');
         ipcRenderer.send('close-main-window');
@@ -109,10 +112,10 @@ closeCart.addEventListener('click', () => {
 })
 
     const addDataToHTML = () => {
-    // remove datas default from HTML
+    
 
-        // add new datas
-        if(products.length > 0) // if has data
+        
+        if(products.length > 0) 
         {
             products.forEach(product => {
                 let newProduct = document.createElement('div');
@@ -147,6 +150,25 @@ const addToCart = (product_id) => {
     let positionThisProductInCart = cart.findIndex((value) => value.product_id == product_id);
     let positionProduct = products.findIndex((value) => value.id == product_id);
 
+    if (positionProduct < 0) {
+        console.error(`Product with id ${product_id} not found.`);
+        return;
+    }
+
+    let availableStock = products[positionProduct].stock;
+
+    // Check if the available stock is greater than zero
+    if (availableStock <= 0) {
+        alert(`Sorry, ${products[positionProduct].name} is out of stock.`);
+        return;
+    }
+
+    // Check if adding the item will exceed the available stock
+    if (positionThisProductInCart >= 0 && cart[positionThisProductInCart].quantity >= availableStock) {
+        alert(`You cannot add more ${products[positionProduct].name}. Available stock: ${availableStock}`);
+        return;
+    }
+
     if (cart.length <= 0) {
         cart = [{
             product_id: product_id,
@@ -166,6 +188,7 @@ const addToCart = (product_id) => {
     addCartToHTML();
     addCartToMemory();
 }
+
 
 const addCartToMemory = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -234,28 +257,37 @@ listCartHTML.addEventListener('click', (event) => {
 })
 const changeQuantityCart = (product_id, type) => {
     let positionItemInCart = cart.findIndex((value) => value.product_id == product_id);
-    if(positionItemInCart >= 0){
+    
+    if (positionItemInCart >= 0) {
         let info = cart[positionItemInCart];
+        let stock = products.find((value) => value.id == product_id)?.stock || 0;
+
         switch (type) {
             case 'plus':
-                cart[positionItemInCart].quantity = cart[positionItemInCart].quantity + 1;
+                if (cart[positionItemInCart].quantity < stock) {
+                    cart[positionItemInCart].quantity = cart[positionItemInCart].quantity + 1;
+                } else {
+                    alert(`Cannot add more ${products[positionProduct].name}. Available stock: ${stock}`);
+                }
                 break;
-        
+
             default:
                 let changeQuantity = cart[positionItemInCart].quantity - 1;
                 if (changeQuantity > 0) {
                     cart[positionItemInCart].quantity = changeQuantity;
-                }else{
+                } else {
                     cart.splice(positionItemInCart, 1);
                 }
                 break;
         }
     }
+    
     addCartToHTML();
     addCartToMemory();
     console.log("Cart", cart);
     console.log("total", total);
-}
+};
+
 
 const initApp = () => {
     // get data product
