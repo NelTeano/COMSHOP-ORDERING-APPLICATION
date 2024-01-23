@@ -12,13 +12,14 @@ h1 {
     padding-left: 10px;
 }
 
-h2 {
+.food-pictures h2 {
     color: #f2f2f2;
-    align-items: center;
-    justify-content: center;
     font-family: 'Courier New', Courier, monospace;
     padding-left: 13px;
+    text-align: center;
+    margin: 0; /* Optional: Remove default margin */
 }
+
 
 .container{
     display: flex;
@@ -41,9 +42,12 @@ h2 {
 }
 
 .food-pictures img{
-    width: 200px;
-    height: 200px;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 500px;
     margin: 20px;
+    padding-top: 60px;
 }
 
 .order-button {
@@ -58,7 +62,12 @@ h2 {
     cursor: pointer;
     outline: 2.5px solid #000000;
     transition: background-color 0.1s ease;
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
+
 
 .order-button:hover {
     background-color: #006267;
