@@ -9,6 +9,12 @@ const OrderSchema = mongoose.Schema({
     },
     total : {
         type: Number,
+    },
+    status : {
+        type: String,
+    },
+    comment : {
+        type: String,
     }
 }, { 
     timestamps: true

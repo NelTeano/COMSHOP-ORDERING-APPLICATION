@@ -1,0 +1,45 @@
+/* loading-style.css */
+body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #404456;
+}
+
+.loading-container {
+    text-align: center;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 16px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #faf8f8;
+}
+
+/* Loading animation */
+.loading-text:after {
+    content: '...';
+    animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+    0%, 20% {
+        content: '.';
+    }
+    40% {
+        content: '..';
+    }
+    60% {
+        content: '...';
+    }
+    80%, 100% {
+        content: '.';
+    }
+}

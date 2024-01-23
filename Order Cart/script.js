@@ -1,3 +1,4 @@
+const { ipcRenderer } = require('electron');
 let listProductHTML = document.querySelector('.listProduct');
 let listCartHTML = document.querySelector('.listCart');
 let iconCart = document.querySelector('.icon-cart');
@@ -6,10 +7,13 @@ let body = document.querySelector('body');
 let closeCart = document.querySelector('.close');
 const popupHTML = document.querySelector('.popup');
 const pcNumInput = document.querySelector('.pcNumber');
+const suggestionInput = document.querySelector('.suggestion');
 let products = [];
 let cart = [];
 let total = 0;
 let pcNum = 1;
+let comment = '';
+
 
 
 localStorage.clear(); // INITIATE CLEAR FIRST ALWAYS FOR NEW DATA
@@ -27,7 +31,8 @@ function closePopup() {
     popupHTML.style.display = "none";
 }
 
-const confirmOrder = () => {
+
+const confirmOrder = async () => {
     
     pcNum = parseInt(pcNumInput.value, 10);
     if (isNaN(pcNum)) {
@@ -39,25 +44,52 @@ const confirmOrder = () => {
         pcNum: pcNum,
         products: cart,
         total: total,
+        comment: comment  
     };
 
-    fetch('http://localhost:3000/api/submit-order', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(orderData),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch(error => {
-        console.error('Error:', error);   
-    });
+    try {
+        
+        const response = await fetch('http://localhost:3000/api/submit-order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderData),
+        });
 
-    alert("Order Successful")
-    closePopup();
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+
+        // Iterate through each item in the cart and update the stock
+        for (const item of cart) {
+            const productId = item.product_id;
+            const quantity = -item.quantity;
+
+            // Make a PUT request to update the stock for the current product
+            const stockUpdateResponse = await fetch(`http://localhost:3000/api/Products/${productId}/addStock`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ quantity }),
+            });
+
+            if (!stockUpdateResponse.ok) {
+                throw new Error(`Error updating stock for product ${productId}: ${stockUpdateResponse.status}`);
+            }
+        }
+
+        console.log('Success:', orderData)
+        alert("Order Successful");
+        closePopup();
+
+        console.log('Sending close-main-window event...');
+        ipcRenderer.send('close-main-window');
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error submitting order');
+    }
 }
 
 
@@ -65,6 +97,9 @@ pcNumInput.addEventListener('input', function() {
     pcNum = parseInt(pcNumInput.value, 10); 
 });
 
+suggestionInput.addEventListener('input', function() {
+    comment = suggestionInput.value;
+});
 
 iconCart.addEventListener('click', () => {
     body.classList.toggle('showCart');
@@ -86,6 +121,7 @@ closeCart.addEventListener('click', () => {
                 newProduct.innerHTML = 
                 `<img src="${product.image}" alt="">
                 <h2>${product.name}</h2>
+                <h5>Stock : ${product.stock}</h5>
                 <div class="price">₱${product.price}</div>
                 <button class="addCart">Add To Cart</button>`;
                 listProductHTML.appendChild(newProduct);
@@ -223,7 +259,7 @@ const changeQuantityCart = (product_id, type) => {
 
 const initApp = () => {
     // get data product
-    fetch('products.json')
+    fetch('http://localhost:3000/api/Products/In-Stock')
     .then(response => response.json())
     .then(data => {
         products = data;
@@ -234,6 +270,9 @@ const initApp = () => {
             cart = JSON.parse(localStorage.getItem('cart'));
             addCartToHTML();
         }
+
+        
+        console.log(products)
     })
 }
 initApp();
