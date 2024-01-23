@@ -1,6 +1,23 @@
 body{
     margin-top: 0px;
     padding: 0px;
+    background-color: #222831;
+}
+
+h1 {
+    color: #f2f2f2;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    padding-left: 10px;
+}
+
+h2 {
+    color: #f2f2f2;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    padding-left: 13px;
 }
 
 .container{
@@ -12,7 +29,6 @@ body{
     width: 100%;
     font-family: 'Poppins', sans-serif;
     font-size: small;
-    background-color: #FEFCF3;
     gap: 40px;
 }p
 
@@ -21,7 +37,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    outline: 2px solid white;
+    outline: 2px solid #f2f2f2;
 }
 
 .food-pictures img{
@@ -32,21 +48,21 @@ body{
 
 .order-button {
     margin: 10px;
-    background-color: #FEFCF3;
+    background-color: #00ADB5;
     color: #000000;
     padding: 10px 20px;
     font-size: 16px;
-    font-family: 'Franklin Gothic Medium';
+    font-family: 'Courier New', Courier, monospace;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     outline: 2.5px solid #000000;
-    transition: background-color 0.1s ease; /* Smooth transition for background-color */
+    transition: background-color 0.1s ease;
 }
 
 .order-button:hover {
-    background-color: #026f14; /* Darker background color on hover */
-    color: #F5EBE0;
+    background-color: #006267;
+    color: #f2f2f2;
     outline: 2.5px solid #000000;
 
 }
