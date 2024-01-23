@@ -1,0 +1,24 @@
+/* loading-style.css */
+body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0; /* Change the background color as desired */
+}
+
+.loading-container {
+    text-align: center;
+}
+
+img {
+    width: 50px; /* Adjust the width of your loading icon */
+    height: 50px; /* Adjust the height of your loading icon */
+    margin-bottom: 16px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333; /* Change the text color as desired */
+}

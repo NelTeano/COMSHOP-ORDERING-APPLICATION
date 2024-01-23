@@ -5,17 +5,22 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "start": "electron main.js",
+    "start": "npm-run-all -p server start-electron",
     "server": "node server.js",
+    "start-electron": "electron main.js",
     "start-reloader": "electron -r electron-reloader main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "teano",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^28.0.0",
+    "concurrently": "^8.2.2",
+    "electron": "^28.1.4",
+    "electron-packager": "^17.1.2",
     "electron-reload": "^2.0.0-alpha.1",
-    "electron-reloader": "^1.2.3"
+    "electron-reloader": "^1.2.3",
+    "npm-run-all": "^4.1.5",
+    "packager": "^0.1.9"
   },
   "dependencies": {
     "cloudinary": "^1.41.2",
