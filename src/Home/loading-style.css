@@ -5,7 +5,10 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #404456;
+    background-image: url('../../images//THC LOGO.png');
+    background-size: cover; /* Ensure the background image covers the entire viewport */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat;
 }
 
 .loading-container {
